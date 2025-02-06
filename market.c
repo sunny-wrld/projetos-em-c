@@ -15,15 +15,13 @@ typedef struct {
     int disponivel;
 } product;
 
-Login adm = {"luka", "fox"};
-
 product Estoque[MAXPRODUCTS] = {
     {"Excalibur",    1,   1005.99f, 1},
     {"Sorting Hat",  8,   1000.99f, 1},
     {"UnoEscada",   15,      4.20f, 1}
 };
 
-int totalProducts = 3; 
+int totalProducts = 3;
 
 void cadastrarProduto() {
     if (totalProducts >= MAXPRODUCTS) {
@@ -32,7 +30,8 @@ void cadastrarProduto() {
     }
 
     printf("Nome do produto: ");
-    scanf(" %c", Estoque[totalProducts].name);
+    scanf(" %s", &Estoque[totalProducts].name);
+    fflush(stdin);
 
     printf("Quantidade: ");
     scanf("%d", &Estoque[totalProducts].quant);
@@ -52,10 +51,9 @@ void exibirProdutos() {
         return;
     }
 
-    printf("\n=== Estoque Atual ===\n");
     for (int i = 0; i < totalProducts; i++) {
         if (Estoque[i].disponivel == 1) {
-            printf("Produto %d: %s | Quantidade: %d | Preco: R$%.2f\n", 
+            printf("Produto %d: %s | Quantidade: %d | Preco: R$%.2f\n",
                    i + 1, Estoque[i].name, Estoque[i].quant, Estoque[i].price);
         } else {
             printf("Produto %d: %s | Indisponivel\n", i + 1, Estoque[i].name);
@@ -94,7 +92,7 @@ void funcaoAdmin() {
         printf("2 - Exibir todos os produtos\n");
         printf("3 - Remover um produto do sistema\n");
         printf("4 - Sair da conta de administrador\n");
-      
+
 
         scanf("%d", &valueadmin);
 
@@ -121,6 +119,8 @@ void funcaoAdmin() {
 void admin() {
     char useradm[20];
     char passadm[20];
+
+    Login adm = {"luka", "fox"};
 
     printf("Digite o usuario: ");
     scanf("%s", useradm);
