@@ -150,7 +150,7 @@ void menuPrincipal() {
 // Login do Administrador
 int loginAdmin() {
     char user[MAX_NAME], pass[MAX_NAME];
-    printf("\n=== Login Admin ===\n");
+    printf("\n Login Admin \n");
     printf("Usuario: ");
     scanf("%49s", user);
     printf("Senha: ");
@@ -169,7 +169,7 @@ int loginAdmin() {
 void adminMenu() {
     int opc;
     do {
-        printf("\n=== Menu Administrador ===\n");
+        printf("\n Menu Administrador \n");
         printf("1 - Cadastrar novo produto\n");
         printf("2 - Exibir todos os produtos\n");
         printf("3 - Remover um produto\n");
@@ -196,7 +196,7 @@ void adminMenu() {
     } while (opc != 4);
 }
 
-// Cadastrar novo produto (ADMIN)
+// So o admin pode Cadastrar novo produto
 void adminCadastrarProduto() {
     if (totalProducts >= MAX_PRODUCTS) {
         printf("Estoque cheio! Nao e possivel cadastrar mais produtos.\n");
@@ -223,9 +223,9 @@ void adminCadastrarProduto() {
     printf("Produto cadastrado com sucesso!\n");
 }
 
-// Exibir produtos (ADMIN)
+// Exibir produtos so o admin
 void adminExibirProdutos() {
-    printf("\n=== Lista de Produtos ===\n");
+    printf("\n Lista de Produtos \n");
     if (totalProducts == 0) {
         printf("Nenhum produto cadastrado.\n");
         return;
@@ -250,7 +250,7 @@ void adminExibirProdutos() {
     }
 }
 
-// Remover produto (ADMIN)
+// So o admin pode remover produto 
 void adminRemoverProduto() {
     if (totalProducts == 0) {
         printf("Nao ha produtos para remover.\n");
@@ -273,7 +273,7 @@ void adminRemoverProduto() {
     printf("Produto '%s' removido (indisponivel).\n", nome);
 }
 
-// Login de Usuário (Cliente)
+// Login de Usuário cliente
 int loginUser() {
     char user[MAX_NAME], pass[MAX_NAME];
     printf("\n Login Cliente \n");
@@ -293,7 +293,7 @@ int loginUser() {
     return -1;
 }
 
-// Cadastrar Novo Cliente
+// Cadastrar novo cliente
 void cadastrarNovoUser() {
     if (totalUsers >= MAX_USERS) {
         printf("Limite de usuarios atingido.\n");
@@ -304,7 +304,7 @@ void cadastrarNovoUser() {
     novo.cartCount    = 0;
     novo.historyCount = 0;
 
-    printf("\n=== Cadastro de Novo Cliente ===\n");
+    printf("\n Cadastro de Novo Cliente \n");
     printf("Username: ");
     scanf("%49s", novo.username);
     printf("Senha: ");
