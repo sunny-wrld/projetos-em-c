@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 
@@ -23,7 +24,7 @@ typedef struct {
 } Compra;
 
 typedef struct {
-    char username[MAX_NAME]; 
+    char username[MAX_NAME];
     char password[MAX_NAME];
     ItemCarrinho cart[MAX_CART];
     int  cartCount;
@@ -70,7 +71,7 @@ void removeItemFromAllCarts(char nomeProd[]);
 void removeItemFromCart(int userIndex, char nomeProd[]);
 
 int main() {
-    
+
     strcpy(products[0].name, "Excalibur");
     products[0].price     = 1000.0f;
     products[0].quantity  = 2;
@@ -250,7 +251,7 @@ void adminExibirProdutos() {
     }
 }
 
-// So o admin pode remover produto 
+// So o admin pode remover produto
 void adminRemoverProduto() {
     if (totalProducts == 0) {
         printf("Nao ha produtos para remover.\n");
@@ -313,15 +314,25 @@ void cadastrarNovoUser() {
     users[totalUsers] = novo;
     totalUsers++;
 
-    printf("Cliente cadastrado com sucesso!\n");
+    for (int i = 0; i < totalUsers; i++) {
+    if (strcmp(users[i].username,  novo.username) == 0 &&
+            strcmp(users[i].password, novo.password) == 0) {
+            printf("Login ja existente\n");
+            }
+            break;
+    }
+
 }
 
 // Menu do Cliente
 void userMenu(int userIndex) {
     int opc;
+
+    adminExibirProdutos();
+
     do {
         printf("\n Menu Cliente (%s) \n", users[userIndex].username);
-        printf("1 - Buscar/Adicionar/Remover produto do carrinho\n");
+        printf("1 - Buscar Porduto\n");
         printf("2 - Finalizar compra\n");
         printf("3 - Exibir historico de compras\n");
         printf("4 - Sair\n");
@@ -447,8 +458,7 @@ void userFinalizarCompra(int userIndex) {
         c.items[i].price    = users[userIndex].cart[i].price;
         c.items[i].quantity = users[userIndex].cart[i].quantity;
 
-        c.totalValue += (users[userIndex].cart[i].price *
-                         users[userIndex].cart[i].quantity);
+        c.totalValue += (users[userIndex].cart[i].price * users[userIndex].cart[i].quantity);
     }
 
     // Adiciona ao histórico
@@ -463,9 +473,7 @@ void userFinalizarCompra(int userIndex) {
     printf("\n Comprovante de Compra \n");
     for (int i = 0; i < c.itemCount; i++) {
         printf("  %d x %s (R$ %.2f)\n",
-               c.items[i].quantity,
-               c.items[i].productName,
-               c.items[i].price);
+        c.items[i].quantity, c.items[i].productName, c.items[i].price);
     }
     printf("Total: R$ %.2f\n", c.totalValue);
 
@@ -485,8 +493,7 @@ void userExibirHistorico(int userIndex) {
         printf("Compra %d:\n", i + 1);
         for (int j = 0; j < comp.itemCount; j++) {
             printf("  %d x %s (R$ %.2f)\n",
-                   comp.items[j].quantity,
-                   comp.items[j].productName,
+                   comp.items[j].quantity,comp.items[j].productName,
                    comp.items[j].price);
         }
         printf("  Total: R$ %.2f\n", comp.totalValue);
