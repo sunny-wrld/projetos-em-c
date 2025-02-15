@@ -507,7 +507,7 @@ int findProductByName(char nome[]) {
             return i;
         }
     }
-    return -1;
+    return 1;
 }
 
 // Remove item de todos os carrinhos
