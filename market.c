@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 
@@ -71,7 +70,6 @@ void removeItemFromAllCarts(char nomeProd[]);
 void removeItemFromCart(int userIndex, char nomeProd[]);
 
 int main() {
-
     strcpy(products[0].name, "Excalibur");
     products[0].price     = 1000.0f;
     products[0].quantity  = 2;
@@ -315,13 +313,12 @@ void cadastrarNovoUser() {
     totalUsers++;
 
     for (int i = 0; i < totalUsers; i++) {
-    if (strcmp(users[i].username,  novo.username) == 0 &&
+        if (strcmp(users[i].username,  novo.username) == 0 &&
             strcmp(users[i].password, novo.password) == 0) {
             printf("Login ja existente\n");
-            }
+        }
             break;
     }
-
 }
 
 // Menu do Cliente
